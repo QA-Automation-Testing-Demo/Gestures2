@@ -29,7 +29,9 @@ namespace DragAndDrop
                 App = appPath,
                 };
 
-                                   
+             androidOptions.AddAdditionalCapability("uiautomator2ServerInstallTimeout", 200000); 
+            androidOptions.AddAdditionalCapability("newCommandTimeout", 300); // 5 minutes for new commands
+            
     _driver = new AndroidDriver(serverUri, androidOptions, TimeSpan.FromMinutes(5)); // Increase command timeout
     _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
