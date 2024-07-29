@@ -33,6 +33,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'    
 
+      - name: Set JAVA_HOME
+        run: echo "JAVA_HOME: $JAVA_HOME"
+
       - name: Install and Run Appium Server
         run: |
           npm install -g appium@2.11.2
