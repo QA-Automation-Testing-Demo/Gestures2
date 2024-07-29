@@ -19,22 +19,20 @@ namespace DragAndDrop
         [OneTimeSetUp]
         public void SetUp()
         {
-            var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_SERVER_URI") ?? "http://192.168.64.24:4723:4723");
-            var appPath = Environment.GetEnvironmentVariable("APK_PATH") ?? "./apk/ApiDemos-debug.apk";
-            var androidOptions = new AppiumOptions
-            {
-                PlatformName = "Android",
-                AutomationName = "UIAutomator2",
-                DeviceName = "pixel",
-                App = appPath,
-                };
+            var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_SERVER_URI") ?? "http://192.168.64.24:4723");
+    var appPath = Environment.GetEnvironmentVariable("APK_PATH") ?? "./apk/ApiDemos-debug.apk";
+    var androidOptions = new AppiumOptions
+    {
+        PlatformName = "Android",
+        AutomationName = "UIAutomator2",
+        DeviceName = "pixel",
+        App = appPath
+    };
 
-            var customOptions = new Dictionary<string, object>();
-            customOptions.Add("uiautomator2ServerInstallTimeout", 60000); // 60 seconds timeout
-            customOptions.Add("newCommandTimeout", 300); // 5 minutes for new commands
+    // Add additional options
+    androidOptions.AddAdditionalAppiumOption("uiautomator2ServerInstallTimeout", 60000); // 60 seconds timeout
+    androidOptions.AddAdditionalAppiumOption("newCommandTimeout", 300); // 5 minutes for new commands
 
-            androidOptions.AddAdditionalOption("custom:options", customOptions);
-            
     _driver = new AndroidDriver(serverUri, androidOptions, TimeSpan.FromMinutes(5)); // Increase command timeout
     _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
