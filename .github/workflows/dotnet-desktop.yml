@@ -122,6 +122,9 @@ jobs:
         run: |
          adb logcat -c  # Clear the previous logs
          nohup adb logcat > logcat.log &
+
+      - name: Install app on emulator  # Add this step
+        run: adb install -r ./apk/ApiDemos-debug.apk
      
       - name: Ensure ADB is connected and device is ready
         run: |
