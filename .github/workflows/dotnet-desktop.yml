@@ -120,8 +120,8 @@ jobs:
 
       - name: Start logcat capture
         run: |
-         adb logcat -c  # Clear the previous logs
-         nohup adb logcat > logcat.log &
+          adb logcat -c || echo "Failed to clear logcat, continuing..."
+          nohup adb logcat > logcat.log &
 
       - name: Install app on emulator  # Add this step
         run: adb install -r ./apk/ApiDemos-debug.apk
