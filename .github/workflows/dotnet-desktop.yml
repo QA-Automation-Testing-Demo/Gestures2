@@ -118,6 +118,11 @@ jobs:
           adb shell settings put global animator_duration_scale 0.0
           adb shell input keyevent 82  # Unlock screen
 
+      - name: Start logcat capture
+        run: |
+         adb logcat -c  # Clear the previous logs
+         nohup adb logcat > logcat.log &
+     
       - name: Ensure ADB is connected and device is ready
         run: |
           adb devices
