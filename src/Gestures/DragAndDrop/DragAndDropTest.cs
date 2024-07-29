@@ -30,7 +30,7 @@ namespace DragAndDrop
     };
 
     // Add additional options
-    androidOptions.AddAdditionalAppiumOption("uiautomator2ServerInstallTimeout", 60000); // 60 seconds timeout
+    androidOptions.AddAdditionalAppiumOption("uiautomator2ServerInstallTimeout", 300000); // 60 seconds timeout
     androidOptions.AddAdditionalAppiumOption("newCommandTimeout", 300); // 5 minutes for new commands
 
     _driver = new AndroidDriver(serverUri, androidOptions, TimeSpan.FromMinutes(5)); // Increase command timeout
